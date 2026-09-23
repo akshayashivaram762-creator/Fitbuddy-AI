@@ -3,263 +3,238 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FitBuddy - AI Fitness Generator</title>
+    <title>FitBuddy | AI Fitness Coach</title>
 
-    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="home">
 
-<header class="navbar">
-
-    <div class="logo">
-        🏋️ FitBuddy
-    </div>
-
+    <!-- NAVBAR -->
     <nav>
-        <a href="/">Home</a>
-        <a href="/users">Users</a>
-        <a href="/docs">API Docs</a>
+
+        <div class="logo">
+            FIT<span>BUDDY</span>
+        </div>
+
+        <div class="nav-right">
+            <span>AI FITNESS COACH</span>
+        </div>
+
     </nav>
 
-</header>
 
+    <!-- MAIN -->
+    <main class="hero">
 
-<main class="container">
+        <!-- LEFT SIDE -->
+        <section class="hero-content">
 
-    <section class="hero">
-
-        <h1>
-            Your Personal AI Fitness Buddy
-        </h1>
-
-        <p>
-            Generate a personalized 7-day workout plan
-            and healthy nutrition tips using AI.
-        </p>
-
-    </section>
-
-
-    <section class="card">
-
-        <h2>Tell us about yourself</h2>
-
-        <form action="/generate-workout" method="post">
-
-            <label for="name">
-                Name
-            </label>
-
-            <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Enter your name"
-                required
-            >
-
-
-            <label for="age">
-                Age
-            </label>
-
-            <input
-                type="number"
-                id="age"
-                name="age"
-                min="13"
-                max="100"
-                placeholder="Enter your age"
-                required
-            >
-
-
-            <label for="gender">
-                Gender
-            </label>
-
-            <select id="gender" name="gender">
-
-                <option value="">
-                    Prefer not to say
-                </option>
-
-                <option value="Female">
-                    Female
-                </option>
-
-                <option value="Male">
-                    Male
-                </option>
-
-                <option value="Other">
-                    Other
-                </option>
-
-            </select>
-
-
-            <label for="fitness_goal">
-                Fitness Goal
-            </label>
-
-            <select
-                id="fitness_goal"
-                name="fitness_goal"
-                required
-            >
-
-                <option value="">
-                    Select your goal
-                </option>
-
-                <option value="General Fitness">
-                    General Fitness
-                </option>
-
-                <option value="Strength">
-                    Strength
-                </option>
-
-                <option value="Flexibility">
-                    Flexibility
-                </option>
-
-                <option value="Endurance">
-                    Endurance
-                </option>
-
-                <option value="Healthy Lifestyle">
-                    Healthy Lifestyle
-                </option>
-
-            </select>
-
-
-            <label for="activity_level">
-                Activity Level
-            </label>
-
-            <select
-                id="activity_level"
-                name="activity_level"
-                required
-            >
-
-                <option value="">
-                    Select activity level
-                </option>
-
-                <option value="Beginner">
-                    Beginner
-                </option>
-
-                <option value="Moderately Active">
-                    Moderately Active
-                </option>
-
-                <option value="Active">
-                    Active
-                </option>
-
-            </select>
-
-
-            <label for="weight">
-                Weight (optional)
-            </label>
-
-            <input
-                type="text"
-                id="weight"
-                name="weight"
-                placeholder="Example: 55 kg"
-            >
-
-
-            <button
-                type="submit"
-                class="primary-button"
-            >
-                ✨ Generate My Plan
-            </button>
-
-        </form>
-
-    </section>
-
-
-    <section class="features">
-
-        <div class="feature-card">
-
-            <div class="feature-icon">
-                🤖
-            </div>
-
-            <h3>
-                AI Powered
-            </h3>
-
-            <p>
-                Gemini helps generate personalized
-                fitness guidance.
+            <p class="green-text">
+                ✦ YOUR PERSONAL AI FITNESS COACH
             </p>
 
-        </div>
-
-
-        <div class="feature-card">
-
-            <div class="feature-icon">
-                📅
-            </div>
-
-            <h3>
-                7-Day Plan
-            </h3>
+            <h1>
+                Train smarter.<br>
+                <span>Live stronger.</span>
+            </h1>
 
             <p>
-                Receive a structured weekly
-                workout plan.
+                Create a personalized workout and healthy lifestyle
+                plan based on your fitness preferences.
             </p>
 
-        </div>
-
-
-        <div class="feature-card">
-
-            <div class="feature-icon">
-                🥗
+            <div class="features">
+                <span>🤖 AI Powered</span>
+                <span>🏋️ Workout Plans</span>
+                <span>🥗 Food Guidance</span>
             </div>
 
-            <h3>
-                Nutrition Tips
-            </h3>
-
-            <p>
-                Get simple healthy eating and
-                recovery suggestions.
-            </p>
-
-        </div>
-
-    </section>
-
-</main>
+        </section>
 
 
-<footer>
+        <!-- FORM CARD -->
+        <section class="glass-card">
 
-    <p>
-        FitBuddy © 2026 | AI Fitness Plan Generator
-    </p>
+            <div class="card-heading">
 
-</footer>
+                <div>
+                    <small>LET'S GET STARTED</small>
+
+                    <h2>
+                        Create Your Plan
+                    </h2>
+                </div>
+
+                <div class="round-icon">
+                    ✦
+                </div>
+
+            </div>
+
+
+            <form id="fitnessForm">
+
+                <label>Name</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+
+                <label>Age</label>
+
+                <input
+                    type="number"
+                    id="age"
+                    placeholder="Enter your age"
+                    required
+                >
+
+
+                <label>Your Goal</label>
+
+                <select id="goal" required>
+
+                    <option value="">
+                        Choose your goal
+                    </option>
+
+                    <option value="General Fitness">
+                        General Fitness
+                    </option>
+
+                    <option value="Strength">
+                        Strength
+                    </option>
+
+                    <option value="Endurance">
+                        Endurance
+                    </option>
+
+                    <option value="Flexibility">
+                        Flexibility
+                    </option>
+
+                </select>
+
+
+                <label>Fitness Level</label>
+
+                <select id="level" required>
+
+                    <option value="">
+                        Choose your level
+                    </option>
+
+                    <option value="Beginner">
+                        Beginner
+                    </option>
+
+                    <option value="Intermediate">
+                        Intermediate
+                    </option>
+
+                    <option value="Advanced">
+                        Advanced
+                    </option>
+
+                </select>
+
+
+                <label>Workout Days</label>
+
+                <select id="days" required>
+
+                    <option value="">
+                        Days per week
+                    </option>
+
+                    <option value="2">
+                        2 Days
+                    </option>
+
+                    <option value="3">
+                        3 Days
+                    </option>
+
+                    <option value="4">
+                        4 Days
+                    </option>
+
+                    <option value="5">
+                        5 Days
+                    </option>
+
+                </select>
+
+
+                <button
+                    type="submit"
+                    class="main-btn"
+                >
+                    Generate My Plan
+                    <b>→</b>
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        document
+            .getElementById("fitnessForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+
+                const user = {
+
+                    name: document
+                        .getElementById("name")
+                        .value,
+
+                    age: document
+                        .getElementById("age")
+                        .value,
+
+                    goal: document
+                        .getElementById("goal")
+                        .value,
+
+                    level: document
+                        .getElementById("level")
+                        .value,
+
+                    days: document
+                        .getElementById("days")
+                        .value
+
+                };
+
+
+                localStorage.setItem(
+                    "fitbuddyUser",
+                    JSON.stringify(user)
+                );
+
+
+                window.location.href = "Workout.html";
+
+            });
+
+    </script>
 
 </body>
 

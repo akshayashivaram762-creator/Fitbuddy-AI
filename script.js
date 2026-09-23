@@ -3,65 +3,69 @@ const resultSection = document.getElementById('result');
 const resultOutput = document.getElementById('plan-output');
 
 function createWorkoutPlan(goal, activityLevel) {
-  const plans = {
+  const basePlans = {
     'General Fitness': [
-      'Day 1: Full-body circuit — squats, lunges, push-ups, rows',
-      'Day 2: Cardio walk or brisk cycling for 30 minutes',
-      'Day 3: Core day — planks, dead bugs, bird dogs',
-      'Day 4: Recovery + mobility — stretch and easy movement',
-      'Day 5: Strength focus — presses, pulls, and bodyweight work',
-      'Day 6: Interval training — short sprints or fast cycling',
-      'Day 7: Active recovery — walk, stretch, and hydration focus'
+      'Day 1: 10 push-ups, 15 squats, 20-second plank',
+      'Day 2: 12 lunges per leg, 15 bodyweight rows, 30-second march',
+      'Day 3: 20-minute brisk walk or cycling',
+      'Day 4: 10 dips, 15 glute bridges, 20-second side plank',
+      'Day 5: 12 burpees, 15 jumping jacks, 20-second wall sit',
+      'Day 6: 10 push-ups, 15 squats, 12 dead bugs each side',
+      'Day 7: 20-minute walk, 10-minute mobility stretch'
     ],
     Strength: [
-      'Day 1: Upper body strength — push-ups, rows, overhead press',
-      'Day 2: Lower body strength — squats, lunges, deadlifts',
-      'Day 3: Rest or light mobility',
-      'Day 4: Upper body strength — pull-ups, bench press, shoulder work',
-      'Day 5: Lower body strength — Romanian deadlifts, step-ups, glutes',
-      'Day 6: Core and stability — planks, carries, anti-rotation work',
-      'Day 7: Recovery walk and stretching'
+      'Day 1: 10 push-ups, 12 bent-over rows, 15 squats',
+      'Day 2: 12 lunges per leg, 10 shoulder presses, 20-second plank',
+      'Day 3: 10 deadlifts, 12 reverse lunges, 15 calf raises',
+      'Day 4: 8 pull-ups or assisted pull-ups, 12 bench dips, 15 sit-ups',
+      'Day 5: 12 goblet squats, 10 overhead presses, 15 glute bridges',
+      'Day 6: 10 burpees, 12 rows, 15 squats',
+      'Day 7: 20-minute walk + light stretching'
     ],
     Flexibility: [
-      'Day 1: Mobility session — hips, spine, and shoulders',
-      'Day 2: Gentle yoga and stretch flow',
-      'Day 3: Recovery walk with deep breathing',
-      'Day 4: Hamstring and lower-back mobility work',
-      'Day 5: Standing stretches and posture exercises',
-      'Day 6: Full-body mobility flow and balance work',
-      'Day 7: Recovery + light stretching'
+      'Day 1: 10 yoga lunges, 20-second hamstring stretch, 10 cat-cow reps',
+      'Day 2: 12 hip circles each side, 15 chest openers, 20-second child pose',
+      'Day 3: 10 shoulder rolls, 20-second calf stretch, 10 deep breaths',
+      'Day 4: 12 seated twists, 15 glute stretches, 20-second quad stretch',
+      'Day 5: 10 downward dogs, 15 ankle circles, 20-second hamstring stretch',
+      'Day 6: 10 yoga poses flow, 20-second hip flexor stretch',
+      'Day 7: 15-minute gentle walk and mobility flow'
     ],
     Endurance: [
-      'Day 1: Brisk walk or bike ride for 30–40 minutes',
-      'Day 2: Interval training — 1 minute fast, 2 minutes easy',
-      'Day 3: Recovery day with easy walking and mobility',
-      'Day 4: Steady cardio session for 35–45 minutes',
-      'Day 5: Hill walk or inclined cardio',
-      'Day 6: Circuit of jumping jacks, squats, and mountain climbers',
-      'Day 7: Light active recovery and stretching'
+      'Day 1: 30-minute brisk walk or cycling',
+      'Day 2: 10 rounds of 20 jumping jacks + 10 squats',
+      'Day 3: 15-minute easy jog + 10-minute stretch',
+      'Day 4: 20-minute steady cardio',
+      'Day 5: 10 rounds of 10 mountain climbers + 15 lunges',
+      'Day 6: 25-minute interval cardio',
+      'Day 7: 20-minute light recovery walk'
     ],
     'Healthy Lifestyle': [
-      'Day 1: 20-minute walk + bodyweight circuit',
-      'Day 2: Strength and balance work with short mobility routine',
-      'Day 3: Light cardio and hydration focus',
-      'Day 4: Core and posture exercises',
-      'Day 5: Active recovery walk + stretching',
-      'Day 6: Full-body movement and light resistance training',
-      'Day 7: Rest day with recovery and meal planning'
+      'Day 1: 10 push-ups, 15 squats, 20-minute walk',
+      'Day 2: 12 lunges, 20-second plank, easy stretching',
+      'Day 3: 15-minute brisk walk, 10-bodyweight squats',
+      'Day 4: 10 glute bridges, 15 sit-ups, mobility work',
+      'Day 5: 20-minute walk, 12 jumping jacks rounds',
+      'Day 6: 10 push-ups, 15 squats, light cardio',
+      'Day 7: Recovery day: gentle walk and hydration'
     ]
   };
 
-  const basePlan = plans[goal] || plans['General Fitness'];
+  let plan = basePlans[goal] || basePlans['General Fitness'];
+
+  if (!Array.isArray(plan) || plan.length !== 7) {
+    plan = basePlans['General Fitness'];
+  }
 
   if (activityLevel === 'Beginner') {
-    return basePlan.map((item) => item.replace(/\d+\s*[-–]*/g, '').trim());
+    return plan.map((item) => item.replace(/(\d+)/g, (num) => Math.max(5, Math.floor(Number(num) * 0.7))));
   }
 
-  if (activityLevel === 'Active') {
-    return basePlan.map((item) => item + ' (increase intensity if energy allows)');
+  if (activityLevel === 'Advanced') {
+    return plan.map((item) => item.replace(/(\d+)/g, (num) => Math.ceil(Number(num) * 1.5)));
   }
 
-  return basePlan;
+  return plan;
 }
 
 form.addEventListener('submit', (event) => {
@@ -85,7 +89,10 @@ form.addEventListener('submit', (event) => {
     <p><strong>Activity Level:</strong> ${activityLevel}</p>
     <p><strong>Weight:</strong> ${weight}</p>
     <ul>
-      ${plan.map((day) => `<li>${day}</li>`).join('')}
+      ${plan.map((day) => {
+        const [label, ...rest] = day.split(':');
+        return `<li><span class="day-label">${label}:</span> ${rest.join(':').trim()}</li>`;
+      }).join('')}
     </ul>
   `;
 

@@ -6,7 +6,7 @@ from fastapi.responses import FileResponse, HTMLResponse
 router = APIRouter()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-TEMPLATE_PATH = BASE_DIR / "template" / "index.html"
+TEMPLATE_PATH = BASE_DIR / "index.html"
 
 
 @router.get("/")

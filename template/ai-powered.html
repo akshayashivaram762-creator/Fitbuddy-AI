@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Powered</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="inner-page">
+
+<nav>
+    <div class="logo">FIT<span>BUDDY</span></div>
+    <a href="workout.html" class="home-link">← Dashboard</a>
+</nav>
+
+<main class="container">
+
+    <div class="ai-box">
+
+        <div class="ai-icon">🤖</div>
+
+        <p class="green-text">AI FITNESS ASSISTANT</p>
+
+        <h1>Your Personalized AI Plan</h1>
+
+        <p>
+            FitBuddy uses your selected fitness preferences to organize
+            your workout and wellness routine.
+        </p>
+
+        <div class="ai-result">
+
+            <div>
+                <small>YOUR NAME</small>
+                <strong id="name"></strong>
+            </div>
+
+            <div>
+                <small>FITNESS GOAL</small>
+                <strong id="goal"></strong>
+            </div>
+
+            <div>
+                <small>FITNESS LEVEL</small>
+                <strong id="level"></strong>
+            </div>
+
+            <div>
+                <small>WORKOUT DAYS</small>
+                <strong id="days"></strong>
+            </div>
+
+        </div>
+
+        <a href="workout.html" class="primary-btn link-btn">
+            View My Generated Plan →
+        </a>
+
+    </div>
+
+</main>
+
+<script>
+
+const data = JSON.parse(localStorage.getItem("fitbuddyUser"));
+
+if (!data) {
+    window.location.href = "index.html";
+}
+
+document.getElementById("name").textContent = data.name;
+document.getElementById("goal").textContent = data.goal;
+document.getElementById("level").textContent = data.level;
+document.getElementById("days").textContent = data.days + " Days";
+
+</script>
+
+</body>
+</html>

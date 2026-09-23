@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upgrade Plan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="inner-page">
+
+<nav>
+    <div class="logo">FIT<span>BUDDY</span></div>
+    <a href="workout.html" class="home-link">← Dashboard</a>
+</nav>
+
+<main class="container">
+
+    <div class="page-heading">
+        <p class="green-text">CUSTOMIZE YOUR PLAN</p>
+        <h1>🔄 Upgrade My Plan</h1>
+        <p>Change your preferences and create a new routine.</p>
+    </div>
+
+    <div class="upgrade-box">
+
+        <h2>Choose Your Goal</h2>
+
+        <select id="goal">
+            <option>General Fitness</option>
+            <option>Strength</option>
+            <option>Endurance</option>
+            <option>Flexibility</option>
+        </select>
+
+        <h2>Workout Location</h2>
+
+        <select id="location">
+            <option>Home</option>
+            <option>Gym</option>
+            <option>Outdoor</option>
+        </select>
+
+        <h2>Workout Duration</h2>
+
+        <select id="duration">
+            <option value="15">15 Minutes</option>
+            <option value="30">30 Minutes</option>
+            <option value="45">45 Minutes</option>
+            <option value="60">60 Minutes</option>
+        </select>
+
+        <h2>Workout Days</h2>
+
+        <select id="days">
+            <option value="2">2 Days</option>
+            <option value="3">3 Days</option>
+            <option value="4">4 Days</option>
+            <option value="5">5 Days</option>
+        </select>
+
+        <button class="primary-btn full" onclick="updatePlan()">
+            ✨ Update My Plan
+        </button>
+
+    </div>
+
+</main>
+
+<script>
+
+function updatePlan() {
+
+    let data = JSON.parse(localStorage.getItem("fitbuddyUser")) || {};
+
+    data.goal = document.getElementById("goal").value;
+    data.location = document.getElementById("location").value;
+    data.duration = document.getElementById("duration").value;
+    data.days = document.getElementById("days").value;
+
+    localStorage.setItem("fitbuddyUser", JSON.stringify(data));
+
+    alert("Your FitBuddy plan has been updated!");
+
+    window.location.href = "workout.html";
+}
+
+</script>
+
+</body>
+</html>
